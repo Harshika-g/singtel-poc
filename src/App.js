@@ -6,7 +6,6 @@ import axios from 'axios';
 import './App.css';
 import Panelview from './Question/Panelview';
 import Result from './Result/Result';
-import QuestionSet from './api/questionSet';
 import ResultCard from './Result/ResultCard';
 import _ from 'lodash';
 
@@ -61,7 +60,7 @@ class App extends Component {
     this._isMounted = true;
     if (localStorage.getItem('userData')) {
       const token = JSON.parse(localStorage.getItem('userData')).token;
-      axios.get('http://34.207.52.212:8080/questions', { headers: { "Authorization": token }}).then((response) => {
+      axios.get('http://34.232.101.41:8080/questions', { headers: { "Authorization": token }}).then((response) => {
         response.data.forEach(function (obj, i) {
           obj.answerMarked = false;
           if (i === 0 || (i !== 0 && obj.category !== response.data[i - 1].category)) {
@@ -80,7 +79,7 @@ class App extends Component {
           })
         }
       });
-      axios.get('http://34.207.52.212:8080/users', { headers: { "Authorization": token }}).then((response) => {
+      axios.get('http://34.232.101.41:8080/users', { headers: { "Authorization": token }}).then((response) => {
         const username = JSON.parse(localStorage.getItem('userData')).username;
         var result = response.data.find(obj => {
           return obj.userName === username;
@@ -187,7 +186,7 @@ class App extends Component {
       finalremark: myRemark.remark,
       finalweightage: totalScore,
     }
-    let res = axios.post('http://34.207.52.212:8080/result', {
+    let res = axios.post('http://34.232.101.41:8080/result', {
       surveyid: surveyId,
       userid: userId,
       username: userName,

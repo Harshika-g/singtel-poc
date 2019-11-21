@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import '../form.css';
-import '../form.css';
 import PasswordResetForm from './PasswordResetForm';
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
-import axios from 'axios';
 
 class FormContainer extends Component {
   constructor(props) {

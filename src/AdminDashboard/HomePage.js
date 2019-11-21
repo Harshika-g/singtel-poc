@@ -3,7 +3,6 @@ import '../homePage.css';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { Card, Button } from 'react-bootstrap';
-import surveyResult from '../api/surveyResult';
 import ResultCard from '../Result/ResultCard';
 
 class HomePage extends Component {
@@ -28,12 +27,12 @@ class HomePage extends Component {
         },
         {
           title: 'Users who completed the survey',
-          count: surveyResult.length,
+          count: this.state.surveyResult.length,
           backgroundImage: 'linear-gradient(230deg, #fc5286, #fbaaa2)',
         },
         {
           title: 'Users who did not complete the survey',
-          count: this.state.allUsers.length - surveyResult.length,
+          count: this.state.allUsers.length - this.state.surveyResult.length,
           backgroundImage: 'linear-gradient(230deg, #ffc480, #ff763b)',
         }
       ]
@@ -45,12 +44,12 @@ class HomePage extends Component {
   componentDidMount() {
     if (localStorage.getItem('userData')) {
       const token = JSON.parse(localStorage.getItem('userData')).token;
-      axios.get('http://34.207.52.212:8080/users', { headers: { "Authorization": token }}).then((response) => {
+      axios.get('http://34.232.101.41:8080/users', { headers: { "Authorization": token }}).then((response) => {
         this.setState({
           allUsers: response.data,
         });
       });
-      axios.get('http://34.207.52.212:8080/allresults', { headers: { "Authorization": token }}).then((response) => {
+      axios.get('http://34.232.101.41:8080/allresults', { headers: { "Authorization": token }}).then((response) => {
         this.setState({
           surveyResult: response.data,
         });

@@ -83,7 +83,7 @@ class SignupForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     if (validation.validateForm(this.state.errors, this.state)) {
-      axios.post('http://34.207.52.212:8080/adduser', {
+      axios.post('http://34.232.101.41:8080/adduser', {
         firstname: this.state.fName,
         lastname: this.state.lName,
         username: this.state.userName,

@@ -29,7 +29,7 @@ class Reset extends Component {
   checkPassword = (event) => {
     event.preventDefault();
     if (this.state.password === this.state.confirmPassword && this.state.password.length >= 8) {
-      axios.put('http://34.207.52.212:8080/reset', {
+      axios.put('http://34.232.101.41:8080/reset', {
         emailid: this.state.email,
         confirmpwd: this.state.confirmPassword
       })
@@ -92,7 +92,7 @@ class Reset extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     if (validation.validateForm(this.state.errors, this.state)) {
-      axios.post('http://34.207.52.212:8080/forgot', {
+      axios.post('http://34.232.101.41:8080/forgot', {
         emailid: this.state.email
       })
         .then((response) => {

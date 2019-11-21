@@ -25,7 +25,7 @@ class SurveyIntro extends Component {
   componentDidMount() {
     if (localStorage.getItem('userData')) {
       const token = JSON.parse(localStorage.getItem('userData')).token;
-      axios.get('http://34.207.52.212:8080/users', { headers: { "Authorization": token }}).then((response) => {
+      axios.get('http://34.232.101.41:8080/users', { headers: { "Authorization": token }}).then((response) => {
         const username = JSON.parse(localStorage.getItem('userData')).username;
         var result = response.data.find(obj => {
           return obj.userName === username;
@@ -42,7 +42,7 @@ class SurveyIntro extends Component {
 
   takeSurvey = (e) => {
     this.props.history.push('survey');
-    let res = axios.post('http://34.207.52.212:8080/addsurvey', {
+    let res = axios.post('http://34.232.101.41:8080/addsurvey', {
       surveyid: this.state.surveyId,
       userid: this.state.userId,
     }, { headers: { "Authorization": this.state.token }})

@@ -28,7 +28,7 @@ class Login extends Component {
   handleSubmit = (event) => {
     const isAdmin = this.props.history.location.pathname === '/login/admin' ? true : false;
     event.preventDefault();
-    axios.post('http://34.207.52.212:8080/login', {
+    axios.post('http://34.232.101.41:8080/login', {
       username: this.state.username,
       password: this.state.password,
       isAdmin

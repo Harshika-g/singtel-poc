@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
-import surveyResult from '../api/surveyResult';
 
 class ResultCard extends Component {
   constructor(props) {
@@ -32,7 +31,7 @@ class ResultCard extends Component {
   componentDidMount() {
     if (this.state.currentUser) {
       const token = JSON.parse(localStorage.getItem('userData')).token;
-      axios.get('http://34.207.52.212:8080/allresults', { headers: { "Authorization": token }})
+      axios.get('http://34.232.101.41:8080/allresults', { headers: { "Authorization": token }})
       .then((response) => {
         var result = response.data.find(obj => {
           return obj.surveyId === this.state.currentUser.surveyId;
