@@ -1,0 +1,40 @@
+.surveyHeader {
+  height: 50px;
+  padding: 10px;
+  width: 100%;
+  border-top: 0.25rem solid rgb(237, 26, 61);
+  background-color: midnightblue;
+}
+
+.title {
+  display: inline;
+  padding-right: 10px;
+  font-size: 22px;
+  font-weight: 100;
+  color: white;
+}
+
+.row {
+  padding: 20px;
+}
+
+.usercard {
+  width: '80%';
+  margin: 20px;
+}
+
+.card-body {
+  padding: 21px 13px;
+}
+
+.card-title {
+  padding: 0px;
+  margin: 0px;
+}
+
+.card {
+  color: white;
+  /* text-align: center; */
+  vertical-align: middle;
+  /* height: 218px; */
+}

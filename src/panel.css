@@ -1,0 +1,124 @@
+p {
+  color: #004085;
+  /* font-size: 16px; */
+  line-height: inherit;
+  margin-bottom: 2px;
+  margin-top: 20px;
+}
+
+.keep-center text-left {
+  width: 45rem;
+  min-height: auto;
+  top: 50px;
+}
+
+.questionNoColor {
+  color: #FFAB00;
+  font-weight: 700;
+}
+
+.choiceLengthThree {
+  margin-bottom: 33px;
+}
+
+.choiceBox {
+  background-color: #f0f2f3;
+  border: 1px solid grey;
+  border-radius: 5px;
+  cursor: pointer;
+  /* height: 45px; */
+  color: black;
+  margin-bottom: 25px;
+  padding: 10px 5px;
+  width: 100%;
+  text-align: left;
+  display: table;
+}
+
+button:hover {
+  background-color: #d5d8db;
+  color: black;
+}
+
+.slide {
+  animation: slide 0.5s ease-in forwards;
+}
+
+@keyframes slide {
+  0% {
+    /* transform: translateX(0); */
+    opacity: 1;
+  }
+  100% {
+    /* transform: translateX(-800px); */
+    opacity: 0;
+  }
+}
+
+.radioCustomButton {
+  display: table-cell;
+  width: 20px;
+  height: 15px;
+  background: #d1d3d1;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+p {
+  margin-top: 15px;
+}
+
+.NextButton {
+  clear: left;
+  float: right;
+  min-width: 15%;
+}
+
+.NavButtons {
+  margin-top: 27px;
+  min-width: 15%;
+}
+
+.container-buttons {
+  -ms-flex-align: center;
+  align-items: center;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin-top: 15px;
+  position: relative;
+}
+
+.question {
+  font-size: 20px;
+  margin: 0px 0px 20px 0px;
+  font-weight: bolder;
+  line-height: 1.1
+}
+
+.radioParent {
+  display: table-cell;
+  width: 20px;
+  height: 100%;
+  vertical-align: middle;
+  text-align: center;
+  padding-left: 5px;
+}
+
+.text {
+  margin: 0px;
+  cursor: pointer;
+  display: table-cell;
+  vertical-align: middle;
+  padding-left: 10px;
+  line-height: 1.1;
+}
+
+.card-body {
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.9);
+  padding: 30px 45px;
+  position: relative;
+}
