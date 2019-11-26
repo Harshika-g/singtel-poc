@@ -34,15 +34,16 @@ class Reset extends Component {
         confirmpwd: this.state.confirmPassword
       })
         .then((response) => {
-          if (response.status === 200) {
-            alert('Password updated successfully');
-            this.props.history.push('');
-          } else {
-            alert('Try resetting the password again');
-          }
           this.setState({
             emailSent: false
           });
+          if (response.status === 200) {
+            alert('Password updated successfully');
+            console.log('history', localStorage.getItem('path'))
+            this.props.history.push(localStorage.getItem('path'));
+          } else {
+            alert('Try resetting the password again');
+          }
         })
     } else if (this.state.password !== this.state.confirmPassword) {
       alert('Kindly enter matching password');
@@ -94,16 +95,17 @@ class Reset extends Component {
     if (validation.validateForm(this.state.errors, this.state)) {
       axios.post('http://34.232.101.41:8080/forgot', {
         emailid: this.state.email
-      })
-        .then((response) => {
+      }).then((response) => {
           if (response.status === 200) {
+            alert('You can now reset your password');
             this.setState({
               emailSent: true
             })
-          } else {
-            alert('This email address doesn not exist');
           }
         })
+        .catch(error => {
+          alert('This email address doesn not exist');
+        });
     } else {
       alert('Please Enter a correct email address');
     }

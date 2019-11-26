@@ -46,19 +46,19 @@ class ResultCard extends Component {
   render() {
     const { currentResult, currentUser } = this.state;
     if (!currentResult) {
-      return <div style = {{ textAlign: 'center' }}><div className='resultStyle' style = {{ marginTop: 200, display: 'inline-block' }}><h2 className="text-center">Sorry but user has not attempted the survey yet !</h2></div></div>
+      return <div style = {{ textAlign: 'center' }}><div className='resultStyle' style = {{ marginTop: 115, display: 'inline-block' }}><h2 className="text-center">Sorry but user has not attempted the survey yet !</h2></div></div>
     } else if (currentResult.length === 0) {
       return null;
     }
     const { firstName, lastName, userName, surveyId } = currentUser;
     return (
       <div>
-        <div style={{ margin: '24px 195px', textAlign: 'left', color: '#00408f' }}>
+        <div style={{ margin: '0 auto', textAlign: 'left', color: '#00408f', width: '66%', marginTop: '30' }}>
           <div> Name : {firstName} {lastName}</div>
           <div> UserName : {userName} </div>
           <div> Survey Id : {surveyId} </div>
         </div>
-        <div className='resultTable'>
+        <div className='resultTable' style={{ margin: '0 auto', width: '71%' }}>
           {
             <table>
               <thead style={{ color: 'white', backgroundColor: '#788298' }}>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
+import TopNavBar from '../TopNavBar';
 
 class SurveyIntro extends Component {
   constructor(props) {
@@ -18,7 +19,8 @@ class SurveyIntro extends Component {
     this.state = {
       surveyId: '',
       userId: '',
-      token: ''
+      token: '',
+      user: '',
     }
   }
 
@@ -34,6 +36,7 @@ class SurveyIntro extends Component {
         this.setState({
           surveyId: result.surveyId,
           userId: result.userId,
+          user: username,
           token
         })
       });
@@ -54,12 +57,15 @@ class SurveyIntro extends Component {
 
   render() {
     return (
-      <div style = {{ textAlign: 'center' }}>
-        <div className='resultStyle' style = {{ marginTop: 200, display: 'inline-block', backgroundColor: 'white' }}>
-          <p>Thanks for participating in the survey. We appreciate your feedback</p>
-          <p>This study will not take a very long time to complete</p>
-          <p className="text-center">Click on the take survey button to get started </p>
-          <Button variant="primary" className='NavButtons' onClick={this.takeSurvey}>Take Survey</Button>
+      <div>
+        <TopNavBar title = 'DOT' user = {this.state.user} visible = 'visible'/>
+        <div style = {{ textAlign: 'center' }}>
+          <div className='resultStyle' style = {{ marginTop: 137, display: 'inline-block', backgroundColor: 'white', width: 'auto' }}>
+            <p>Thanks for participating in the survey. We appreciate your feedback</p>
+            <p>This study will not take a very long time to complete</p>
+            <p className="text-center">Click on the take survey button to get started </p>
+            <Button variant="primary" className='NavButtons' onClick={this.takeSurvey}>Take Survey</Button>
+          </div>
         </div>
       </div>
     )

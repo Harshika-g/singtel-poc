@@ -8,6 +8,7 @@ import Panelview from './Question/Panelview';
 import Result from './Result/Result';
 import ResultCard from './Result/ResultCard';
 import _ from 'lodash';
+import TopNavBar from './TopNavBar';
 
 class App extends Component {
   _isMounted = false;
@@ -239,14 +240,14 @@ class App extends Component {
       )
       surveyComplete = (
         <div>
-          <Result showResultCard={this.showResult} marks={totalScore} maxScore={maxTotal} remark={myRemark} />
+          <Result showResultCard={this.showResult} marks={totalScore} maxScore={maxTotal} remark={myRemark} user= {userName}/>
         </div>
       )
       resultView = (<ResultCard />)
     }
     return (
       <div className="App">
-        <h1 className="surveyHead">DOT</h1>
+        <TopNavBar title = 'DOT' user = {userName} visible = 'visible'/>
         {this.state.resultState ? this.state.showResultCard ? resultView : surveyComplete : panelView}
       </div>
     )

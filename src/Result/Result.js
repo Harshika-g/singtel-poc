@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 const result = (props) => {
     return (
         <div>
-            <div className='resultStyle'>
+            <div className='resultStyle' style = {{ width: '55%' }}>
                 <h2 className="text-center">
                     Thanks for attempting the survey !
             </h2>

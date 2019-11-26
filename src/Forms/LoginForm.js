@@ -7,10 +7,10 @@ class Login extends Component {
   constructor(props) {
     super(props);
     window.onload = function () {
-      localStorage.clear();
-      // props.history.push(props.history.pathname);
-      props.history.push('');
+      props.history.push(props.history.pathname);
+      // props.history.push('');
     }
+    localStorage.clear();
     this.state = {
       username: '',
       password: '',
@@ -34,7 +34,6 @@ class Login extends Component {
       isAdmin
     }).then((response) => {
         if (response.status === 200) {
-          console.log(response.data.token, 'data..');
           localStorage.setItem('userData', JSON.stringify({ username: this.state.username, token: response.data.token }));
           isAdmin ? this.props.history.push('adminPage') : this.props.history.push('introPage');
           // isAdmin ? this.props.history.push('adminPage') : this.props.history.push('survey');
@@ -46,6 +45,7 @@ class Login extends Component {
   }
 
   render() {
+    localStorage.setItem('path', this.props.history.location.pathname);
     const isAdmin = this.props.history.location.pathname === '/login/admin' ? true : false;
     return (
       <div>

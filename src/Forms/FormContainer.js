@@ -4,6 +4,7 @@ import '../form.css';
 import PasswordResetForm from './PasswordResetForm';
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
+import TopNavBar from '../TopNavBar';
 
 class FormContainer extends Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class FormContainer extends Component {
     );
     return (
       <div className={"App" + (showMsg ? 'appOpacity' : null)}>
-        <h1 className="surveyHead">DOT</h1>
+        <TopNavBar title = 'DOT' user = '' visible = 'hidden'/>
         <div className='auth-form px-3' style={{ opacity: showMsg ? 0.5 : 1 }}>
           <form onSubmit={this.handleSubmit} noValidate>
             <div className='login'>

@@ -29,14 +29,6 @@ class SignupForm extends Component {
     }
   }
 
-  // componentDidMount() {
-  //   axios.get('http://3.233.186.167:8080/users').then((response) => {
-  //     this.setState({
-  //       allUsers: response.data
-  //     })
-  //   });
-  // }
-
   handleChange = (event) => {
     event.preventDefault();
     const { name, value } = event.target;
@@ -52,7 +44,7 @@ class SignupForm extends Component {
       case 'lName':
         errors.lName =
           value.length <= 0
-            ? 'Please enter your lastname!'
+            ? 'Please enter your last name!'
             : '';
         break;
       case 'userName':
@@ -82,6 +74,7 @@ class SignupForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    const { fName, lName, userName, email, password, errors } = this.state;
     if (validation.validateForm(this.state.errors, this.state)) {
       axios.post('http://34.232.101.41:8080/adduser', {
         firstname: this.state.fName,
@@ -108,10 +101,17 @@ class SignupForm extends Component {
             // }, 1000);
           } else {
             alert('Please use a different username')
+            errors.userName = 'Please Enter a different username'
           }
         });
     } else {
-      alert('Please fill all the fields correctly')
+      alert('Please fill all the fields correctly');
+      errors.fName = fName.length <=0 ? 'Please enter your first name' : errors.fName;
+      errors.lName = lName.length <=0 ? 'Please enter your last name' : errors.lName;
+      errors.userName = userName.length <=0 ? 'Please enter your username' : errors.userName;
+      errors.email = email.length <=0 ? 'Please enter your email' : errors.email;
+      errors.password = password.length <=0 ? 'Please enter your password' : errors.password;
+      this.setState({ errors });
     }
   }
 
