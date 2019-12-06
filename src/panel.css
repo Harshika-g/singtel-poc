@@ -94,6 +94,7 @@ p {
 
 .question {
   font-size: 20px;
+  cursor: pointer;
   margin: 0px 0px 20px 0px;
   font-weight: bolder;
   line-height: 1.1

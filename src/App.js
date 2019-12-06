@@ -247,7 +247,7 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <TopNavBar title = 'DOT' user = {userName} visible = 'visible'/>
+        <TopNavBar title = 'DOT Tool' user = {userName} visible = 'visible'/>
         {this.state.resultState ? this.state.showResultCard ? resultView : surveyComplete : panelView}
       </div>
     )

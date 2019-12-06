@@ -28,7 +28,7 @@ class FormContainer extends Component {
     );
     return (
       <div className={"App" + (showMsg ? 'appOpacity' : null)}>
-        <TopNavBar title = 'DOT' user = '' visible = 'hidden'/>
+        <TopNavBar title = 'DOT Tool' user = '' visible = 'hidden'/>
         <div className='auth-form px-3' style={{ opacity: showMsg ? 0.5 : 1 }}>
           <form onSubmit={this.handleSubmit} noValidate>
             <div className='login'>

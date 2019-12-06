@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Button } from 'react-bootstrap';
+import { Card, Button, OverlayTrigger, Popover } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 import $ from 'jquery';
 import TabsView from './TabView';
@@ -33,6 +33,9 @@ class Panel extends Component {
   }
 
   onAnswerCick(event) {
+    if (event.target.className !== 'text') {
+      return true;
+    }
     const buttonCount = document.querySelectorAll('.choiceBox');
     const buttonId = event.target.getAttribute('id').split('_')[1];
     const buttonType = event.target.getAttribute('type');
@@ -92,7 +95,7 @@ class Panel extends Component {
     })
     this.props.pushBackQuestion(this.props.qIndex);
   }
-  // const answerArr = props.answers.filter(obj => obj.option !== null);
+
   render() {
     const answerArr = this.props.answers.filter(obj => obj.option !== null);
     this.weightage = this.props.weightage;
@@ -102,12 +105,18 @@ class Panel extends Component {
       <div style={{ paddingBottom: 50 }}>
         <Card key={this.props.questionId} style={{ width: '40rem', minHeight: 'auto', top: '12px' }} className="keep-center text-left ">
           <Card.Body style={{ padding: '2px 44px', paddingBottom: 30 }}>
-          <p style = {{ color : 'grey', fontSize: 12, paddingBottom: 21}}> *Kindly answer all questions in this section inorder to move to the next section</p>
+            <p style={{ color: 'grey', fontSize: 12, paddingBottom: 21 }}> *Kindly answer all questions in this section inorder to move to the next section</p>
             <TabsView selCategory={this.props.category} changeSection={this.changeSection} visitedCategories={this.props.visitedCategories} />
             <p style={{ fontSize: 12, marginTop: 30, marginBottom: 10 }}>Question <span>{this.props.questionNo}</span> of <span>{this.props.categorylength}</span></p>
-            <p className='question'>
-              {this.props.questionDescription.split('?')[0]} ?
-                  </p>
+            {this.props.overLay.length > 0 && <OverlayTrigger placement="top" overlay={<Popover id="popover-basic" className='popup'>
+              <Popover.Title as="h3">Descrition</Popover.Title>
+              <Popover.Content>
+                {this.props.overLay}
+                  </Popover.Content>
+            </Popover>} >
+              <p className='question'>{this.props.questionDescription.split('?')[0]} ?</p>
+            </OverlayTrigger>}
+            {this.props.overLay.length === 0 && <p className='question'>{this.props.questionDescription.split('?')[0]} ?</p>}
             {answerArr.map((op, index) => {
               return <button className='choiceBox' onClick={this.onAnswerCick} key={'button_' + index} id={'button_' + index} type={this.props.answerType === 'Single Selection' ? 'radio' : 'checkbox'}>
                 <div className='radioParent' id={'radioParent_' + index} key={'radioParent_' + index}>
@@ -124,15 +133,23 @@ class Panel extends Component {
                     data-answer-id={op._id}
                   />
                 </div>
-                <div style={{ color: (this.scoreArray[Number(this.props.questionNo - 1)] / this.weightage) === Number(op.weightage) ? '#007bff' : null, fontWeight: (this.scoreArray[Number(this.props.questionNo - 1)] / this.weightage) === Number(op.weightage) ? 'normal' : null }} className='text' id={'text_' + index} htmlFor={index} type={this.props.answerType === 'Single Selection' ? 'radio' : 'checkbox'}>{op.option}</div>
+                <div style={{ width: 493, color: (this.scoreArray[Number(this.props.questionNo - 1)] / this.weightage) === Number(op.weightage) ? '#007bff' : null, fontWeight: (this.scoreArray[Number(this.props.questionNo - 1)] / this.weightage) === Number(op.weightage) ? 'normal' : null }} className='text' id={'text_' + index} htmlFor={index} type={this.props.answerType === 'Single Selection' ? 'radio' : 'checkbox'}>{op.option}</div>
+                {op.hint.length > 0 && <OverlayTrigger placement="top" overlay={<Popover id="popover-basic" className='popup' id={'tooltip_' + index}>
+                  <Popover.Title as="h3">Descrition</Popover.Title>
+                  <Popover.Content>
+                    {op.hint}
+                  </Popover.Content>
+                </Popover>} >
+                  <div style={{ display: 'table-cell', verticalAlign: 'middle' }}><div style={{ backgroundImage: "url('./icon.png')", display: 'table-cell', height: 25, width: 25, backgroundRepeat: 'no-repeat', backgroundSize: '100% 100%' }} className={'icon_' + index} /></div>
+                </OverlayTrigger>}
               </button>
             })}
             {(this.props.qIndex + 1 > 1) ? <Button variant="primary" onClick={this.pushBackQuestion} className='NavButtons'>Back</Button> : null}
             {(this.props.qIndex < this.props.totalLength - 1) ? <Button variant="primary" className='NextButton NavButtons' onClick={this.changeInput} disabled={!this.props.answerMarked}>Next</Button> : null}
             {(this.props.qIndex === this.props.totalLength - 1) ? <Button variant="primary" className='NextButton NavButtons' onClick={this.onSubmit} disabled={!this.props.answerMarked}>Submit</Button> : null}
           </Card.Body>
-        </Card>
-      </div>
+        </Card >
+      </div >
     )
   }
 }
